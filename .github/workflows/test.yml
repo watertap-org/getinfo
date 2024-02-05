@@ -24,10 +24,19 @@ jobs:
           - '3.10'
           - '3.11'
           - '3.12'
+        include:
+          - os: macos-14
+            python-version: '3.8'
+            unavailable: "true"
+          - os: macos-14
+            python-version: '3.9'
+            unavailable: "true"
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - if: ${{ !matrix.unavailable }}
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - run: python getinfo.py
+      - if: ${{ !matrix.unavailable }}
+        run: python getinfo.py
