@@ -346,7 +346,7 @@ class Module(Collector):
         self._prefix = prefix
 
     def collect(self):
-        vars_ = globals() if self._module is None else self._module.__dict__
+        vars_ = dict(globals() if self._module is None else self._module.__dict__)
         for name, attr in vars_.items():
             if not name.startswith(self._prefix): continue
             if inspect.isfunction(attr):
