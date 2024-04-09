@@ -70,6 +70,11 @@ For example, when supporting a user who's reporting an issue, a WaterTAP develop
 - What processor architecture?
 - What other Python packages are installed? What versions?
 
+**getinfo** makes this process easier, by:
+
+- Automating the collection of information (as opposed to the maintainer having to provide the commands to run, and the user having to run them)
+- Collating the output in a standardized text format, so that e.g. outputs from different environments can be compared (or even `diff`ed) directly
+
 ## How do I use getinfo?
 
 1. Download `getinfo.py` from the following link: https://github.com/watertap-org/getinfo/raw/main/getinfo.py
