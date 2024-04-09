@@ -75,12 +75,12 @@ For example, when supporting a user who's reporting an issue, a WaterTAP develop
 - Automating the collection of information (as opposed to the maintainer having to provide the commands to run, and the user having to run them)
 - Collating the output in a standardized text format, so that e.g. outputs from different environments can be compared (or even `diff`ed) directly
 
+## How do I install getinfo?
+
+To use **getinfo**, no installation is necessary (or, for the time being, even supported). **getinfo** is designed to be as self-contained as possible: the only requirements are (a) a local copy of the `getinfo.py` file, and (b) a working `python` command.
+
 ## How do I use getinfo?
 
 1. Download `getinfo.py` from the following link: https://github.com/watertap-org/getinfo/raw/main/getinfo.py
 2. Open a terminal/command prompt and run `python getinfo.py`
 3. Copy the output and paste it where needed, e.g. a GitHub issue or a Slack support message
-
-## How do I install getinfo?
-
-To use **getinfo**, no installation is necessary (or, for the time being, even supported). **getinfo** is designed to be as self-contained as possible: the only requirements are (a) a local copy of the `getinfo.py` file, and (b) a working `python` command.
