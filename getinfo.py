@@ -27,7 +27,7 @@ from types import (
 )
 
 
-VERSION = "0.24.1.25"
+__version__ = "0.24.1.25"
 
 
 class _Node:
@@ -358,6 +358,11 @@ class Module(Collector):
                 yield Value.from_parent(self, value=attr, id=name)
 
 
+def getinfo_meta():
+    yield "version", __version__
+    yield "__file__", File(__file__)
+
+
 def getinfo_conda():
     yield ActiveCondaEnv()
     yield Environ("CONDA_*")
@@ -368,11 +373,6 @@ def getinfo_python():
     yield "which python", Executable("python")
     yield "sys.version_info", sys.version_info
     yield PipList()
-
-
-def getinfo_meta():
-    yield "version", VERSION
-    yield "__file__", File(__file__)
 
 
 class PythonDistribution(Collector):
