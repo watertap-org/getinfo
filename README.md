@@ -53,7 +53,7 @@ $ python getinfo.py
 # truncated, full output is longer
 ```
 
-## What (and who) is it for?
+## What (and whom) is it for?
 
 The primary use case for **getinfo** is to make collecting, sharing, and comparing information easier while troubleshooting.
 
