@@ -81,6 +81,13 @@ To use **getinfo**, no installation is necessary (or, for the time being, even s
 
 ## How do I use getinfo?
 
-1. Download `getinfo.py` from the following link: https://github.com/watertap-org/getinfo/raw/main/getinfo.py
-2. Open a terminal/command prompt and run `python getinfo.py`
-3. Copy the output and paste it where needed, e.g. a GitHub issue or a Slack support message
+For the sake of example, let's consider the scenario in which you encounter an issue, e.g. an unexpected failure while running WaterTAP's test suite.
+
+1. Download `getinfo.py` by navigating to <https://github.com/watertap-org/getinfo/blob/main/getinfo.py> and clicking on the "Download raw file" button
+  ![](docs/images/download-raw.png)
+2. Copy the path of the downloaded `getinfo.py` file (e.g. on Windows, this can be done by navigating to the `Downloads` folder, selecting the file, and clicking on "Copy Path")
+  ![](docs/images/copy-path.png)
+3. In the same terminal/console window where the failure occurred, type `python `  followed by the path to the downloaded `getinfo.py` file, e.g. `python "C:\Users\user\Downloads\getinfo.py"`. If the terminal/console window isn't open anymore, open a new one trying to reproduce the conditions when the failure occurred (e.g. same working directory, Conda environment, etc)
+  ![](docs/images/run.png)
+4. Copy the output and paste it where needed, e.g. a GitHub issue or a Slack support message. In this particular example, inspecting the **getinfo** output would help an experienced developer spot an incompatibility between the installed versions of `Pyomo` and `idaes-pse` (the `Pyomo` version is too old)
+  ![](docs/images/output.png)
