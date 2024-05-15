@@ -634,6 +634,11 @@ def getinfo_watertap():
     yield RunShell("pip show watertap")
 
 
+def getinfo_watertap_ui():
+    yield PythonDistribution("watertap-ui")
+    yield RunShell("pip show watertap-ui")
+
+
 def getinfo_platform():
     yield from (
         locale.getlocale,
@@ -666,7 +671,12 @@ def _to_jsonable(obj: object):
 
 def _get_default_file_name(prefix: str = ".getinfo-output") -> str:
     ts = datetime.datetime.utcnow()
-    return f"{prefix}-{ts.isoformat()}"
+    name = f"{prefix}-{ts.isoformat()}"
+    return (
+        name
+        # : are used in isoformat() but they are not allowed in file names on Windows
+        .replace(":", "-")
+    )
 
 
 # created in the global scope to facilitate debugging
