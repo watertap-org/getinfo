@@ -670,7 +670,7 @@ def _to_jsonable(obj: object):
 
 
 def _get_default_file_name(prefix: str = ".getinfo-output") -> str:
-    ts = datetime.datetime.utcnow()
+    ts = datetime.datetime.now(tz=datetime.utc)
     name = f"{prefix}-{ts.isoformat()}"
     return (
         name
