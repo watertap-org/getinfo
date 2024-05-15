@@ -622,7 +622,6 @@ def getinfo_watertap():
 def getinfo_platform():
     yield from (
         locale.getlocale,
-        locale.getpreferredencoding,
         platform.platform,
         platform.system,
         platform.machine,
