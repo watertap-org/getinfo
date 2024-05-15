@@ -7,6 +7,7 @@ import functools
 import importlib.metadata
 import inspect
 import locale
+import logging
 import os
 import platform
 import shutil
@@ -29,6 +30,8 @@ from types import (
 
 
 __version__ = "v0.24.1.25"
+
+_log = logging.getLogger("getinfo")
 
 
 class _Node:
@@ -261,6 +264,7 @@ def _for_collector(obj: Collector, data: dict=None, parent=None):
         data = {}
     key = get_key(obj)
     subdata = data[key] = {}
+    _log.info("Collecting from: %s", key)
     for collected in obj.collect():
         populate(collected, data=subdata, parent=parent)
 
@@ -649,20 +653,41 @@ def _to_jsonable(obj: object):
     return str(obj)
 
 
-def _display(obj):
-    return print(
-        json.dumps(obj, indent=4, default=_to_jsonable)
-    )
+def _get_default_file_name(prefix: str = ".getinfo-output") -> str:
+    ts = datetime.datetime.utcnow()
+    return f"{prefix}-{ts.isoformat()}"
 
 
+# created in the global scope to facilitate debugging
 DATA = {}
 
 
-def main():
+def main(args=None):
 
+    parser = _build_cli_parser()
+    cli_opts = parser.parse_args(args)
+    logging.basicConfig(level=logging.INFO)
+    _log.info(parser.prog)
+    _log.debug(cli_opts)
+
+    _log.info("Start collecting information")
     root = Module(target=__name__, prefix="getinfo_")
     populate(root, DATA)
-    _display(DATA)
+    _log.info("Collection complete")
+
+    output_str = json.dumps(DATA, indent=4, default=_to_jsonable)
+    n_lines = output_str.count("\n")
+    output_dest = cli_opts.output
+    if output_dest in {"stdout"}:
+        _log.info("output (%d lines) will be written to stdout", n_lines)
+        print(output_str)
+    else:
+        path = Path(output_dest) if output_dest else Path(_get_default_file_name()).with_suffix(".json")
+        path = path.resolve()
+        written = path.write_text(output_str)
+        _log.info("output (%d lines) has been written to %s (%d B)", n_lines, os.fspath(path), written)
+
+
 def _build_cli_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog=f"getinfo {__version__}")
     p.add_argument(
