@@ -2,6 +2,8 @@ name: Test getinfo.py
 
 on:
   push:
+    branches: [main]
+  pull_request:
 
 jobs:
 
