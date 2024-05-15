@@ -670,7 +670,12 @@ def _to_jsonable(obj: object):
 
 
 def _get_default_file_name(prefix: str = ".getinfo-output") -> str:
-    ts = datetime.datetime.now(tz=datetime.utc)
+
+    try:
+        # Python 3.11+
+        ts = datetime.datetime.now(tz=datetime.UTC)
+    except AttributeError:
+        ts = datetime.datetime.now(tz=datetime.timezone.utc)
     name = f"{prefix}-{ts.isoformat()}"
     return (
         name
