@@ -634,6 +634,11 @@ def getinfo_watertap():
     yield RunShell("pip show watertap")
 
 
+def getinfo_watertap_ui():
+    yield PythonDistribution("watertap-ui")
+    yield RunShell("pip show watertap-ui")
+
+
 def getinfo_platform():
     yield from (
         locale.getlocale,
