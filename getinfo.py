@@ -28,7 +28,7 @@ from types import (
 )
 
 
-__version__ = "0.24.1.25"
+__version__ = "v0.24.1.25"
 
 
 class _Node:
