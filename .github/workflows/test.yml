@@ -40,10 +40,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - if: ${{ !matrix.unavailable }}
-        run: |
-          python getinfo.py --help
-          python getinfo.py --version
-          python getinfo.py
-          python getinfo.py -o stdout
-          python getinfo.py -o getinfo-output.json
+      - run: python getinfo.py --help
+      - run: python getinfo.py --version
+      - run: python getinfo.py
+      - run: python getinfo.py -o stdout
+      - run: python getinfo.py -o getinfo-output.json
