@@ -40,7 +40,7 @@ from types import (
 )
 
 
-__version__ = "v0.24.5.15.1"
+__version__ = "v0.24.5.15.2"
 
 _log = logging.getLogger("getinfo")
 
